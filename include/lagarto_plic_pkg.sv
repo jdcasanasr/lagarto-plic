@@ -1,12 +1,21 @@
 package lagarto_plic_pkg;
 
-    parameter INTERRUPT_ENABLE_MASK = 32'h0;
-    parameter NO_INTERRUPT          = '0;
+    import riscv_privileged_pkg :: MXLEN;
 
-    typedef enum
+    parameter INTERRUPT_ENABLE_MASK = 32'h0;
+
+    typedef enum logic [MXLEN - 1:0]
     {
-        JTAG_0,
-        JTAG_1,
-    } interrupt_source_id_t;
+        NO_INTERRUPT_PRIORITY   = 'd0
+        JTAG0_PRIORITY          = 'd1,
+        JTAG1_PRIORITY          = 'd2,
+    } interrupt_priority_t;
+
+    typedef enum logic [MXLEN - 1:0]
+    {
+        NO_INTERRUPT_ID = 'd0,
+        JTAG0_ID        = 'd1,
+        JTAG1_ID        = 'd2,
+    } interrupt_id_t;
 
 endpackage

@@ -8,7 +8,7 @@
 //  Referencias:    https://github.com/riscv/riscv-plic-spec            //
 //**********************************************************************//
 
-import lagarto_plic_pkg     :: NO_INTERRUPT;
+import lagarto_plic_pkg     :: interrupt_priority_t, interrupt_id_t;
 import riscv_privileged_pkg :: MXLEN;
 
 module lagarto_plic_multiplexer
@@ -16,14 +16,14 @@ module lagarto_plic_multiplexer
     input   logic                   source_interrupt_pending_i,
     input   logic                   interrupt_enable_i,
 
-    input   logic [MXLEN - 1:0]     interrupt_priority_a_i,
-    input   logic [MXLEN - 1:0]     interrupt_id_a_i,
+    input   interrupt_priority_t    interrupt_priority_a_i,
+    input   interrupt_id_t          interrupt_id_a_i,
 
-    input   logic [MXLEN - 1:0]     interrupt_priority_b_i,
-    input   logic [MXLEN - 1:0]     interrupt_id_b_i,
+    input   interrupt_priority_t    interrupt_priority_b_i,
+    input   interrupt_id_t          interrupt_id_b_i,
 
-    output  logic [MXLEN - 1:0]     maximum_priority_o,
-    output  logic [MXLEN - 1:0]     maximum_id_o
+    output  interrupt_priority_t    maximum_priority_o,
+    output  interrupt_id_t          maximum_id_o
 );
 
     always_comb
