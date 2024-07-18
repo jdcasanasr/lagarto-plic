@@ -13,19 +13,18 @@ import riscv_privileged_pkg :: MXLEN;
 
 module lagarto_plic
 #(
-    parameter PLIC_REGISTER_LENGTH          = 32
-    parameter NUMBER_OF_INTERRUPT_SOURCES   = 32
+    parameter PLIC_REGISTER_LENGTH          = 32,
+    parameter NUMBER_OF_INTERRUPT_SOURCES   = 2
 )
 (
     // Source-Side Interface.
-    input logic     [NUMBER_OF_INTERRUPT_SOURCES - 1:0]     interrupt_signal_i,
+    input logic             [NUMBER_OF_INTERRUPT_SOURCES - 1:0] interrupt_signal_i,
 
     // Target-Side Interface.
-    input logic                                             interrupt_claim_i,
-    input logic                                             interrupt_complete_i,
+    input logic                                                 interrupt_claim_complete_i,
 
-    output logic                                            interrupt_notification_o,
-    output logic    [MXLEN - 1:0]                           interrupt_id_o
+    output logic                                                interrupt_notification_o,
+    output interrupt_id_t                                       interrupt_id_o
 );
 
     // Internal Signals & Buses.
@@ -37,6 +36,11 @@ module lagarto_plic
 
     assign interrupt_enable_w = INTERRUPT_ENABLE_MASK;
 
+    // Drive Output Ports.
+    // See If There's At Least One Interrupt Enable/Request Match.
+    assign interrupt_notification_o = |(interrupt_enable_w & interrupt_request_w);
+    assign interrupt_id_o           = maximum_id_w[NUMBER_OF_INTERRUPT_SOURCES - 1];
+
     // Sub-Module Instances.
     genvar i;
 
@@ -45,10 +49,10 @@ module lagarto_plic
             begin   : lagarto_plic_gateway_instantiation
                 lagarto_plic_gateway lagarto_plic_gateway_instance
                 (
-                    .interrupt_signal_i     (interrupt_signal_i),
-                    .interrupt_complete_i   (interrupt_complete_i),
+                    .interrupt_signal_i             (interrupt_signal_i[i]),
+                    .interrupt_claim_complete_i     (interrupt_claim_complete_i),
 
-                    .interrupt_request_o    (interrupt_request_w[i])
+                    .interrupt_request_o            (interrupt_request_w[i])
                 );
             end     : lagarto_plic_gateway_instantiation
     endgenerate

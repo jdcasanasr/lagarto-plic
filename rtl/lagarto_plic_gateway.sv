@@ -11,13 +11,13 @@
 module lagarto_plic_gateway
 (
     input   logic   interrupt_signal_i,
-    input   logic   interrupt_complete_i,
+    input   logic   interrupt_claim_complete_i,
 
     output  logic   interrupt_request_o
 );
 
     always_latch
-        if (interrupt_complete_i)
+        if (interrupt_claim_complete_i)
             interrupt_request_o = interrupt_signal_i;
 
 endmodule

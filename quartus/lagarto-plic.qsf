@@ -23,7 +23,7 @@
 #
 # -------------------------------------------------------------------------- #
 set_global_assignment -name FAMILY "Cyclone 10 GX"
-set_global_assignment -name TOP_LEVEL_ENTITY "lagarto-plic"
+set_global_assignment -name TOP_LEVEL_ENTITY lagarto_plic
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 24.2.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:40:55  JULY 18, 2024"
 set_global_assignment -name LAST_QUARTUS_VERSION "24.2.0 Pro Edition"
@@ -39,3 +39,7 @@ set_global_assignment -name DEVICE 10CX220YF672I5G
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2012
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name POWER_APPLY_THERMAL_MARGIN ADDITIONAL

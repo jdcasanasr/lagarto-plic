@@ -8,7 +8,7 @@
 //  Referencias:    https://github.com/riscv/riscv-plic-spec            //
 //**********************************************************************//
 
-import lagarto_plic_pkg     :: interrupt_priority_t, interrupt_id_t;
+import lagarto_plic_pkg     :: * ;
 import riscv_privileged_pkg :: MXLEN;
 
 module lagarto_plic_multiplexer
@@ -29,7 +29,7 @@ module lagarto_plic_multiplexer
     always_comb
         if (interrupt_enable_i && source_interrupt_pending_i)
             if (interrupt_priority_a_i > interrupt_priority_b_i)
-                begin   
+                begin
                     maximum_priority_o  = interrupt_priority_a_i;
                     maximum_id_o        = interrupt_id_a_i;
                 end
@@ -55,8 +55,8 @@ module lagarto_plic_multiplexer
                 
         else
             begin
-                maximum_priority_o  = NO_INTERRUPT;
-                maximum_id_o        = NO_INTERRUPT;
+                maximum_priority_o  = NO_INTERRUPT_PRIORITY;
+                maximum_id_o        = NO_INTERRUPT_ID;
             end
 
 endmodule
