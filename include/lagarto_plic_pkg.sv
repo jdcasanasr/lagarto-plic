@@ -1,3 +1,13 @@
+//**********************************************************************//
+//  Proyecto:       SoC_AXI_Lagarto_I                                   //
+//  Archivo:        lagarto_plic_pkg.v                                  //
+//  Organización:   Instituto Politécnico Nacional                      //
+//  Autor(es):      Daniel Casañas                                      //
+//  Supervisor:     Dr. Marco Antonio Ramírez Salinas                   //
+//  E-mail:         lagarto@cic.ipn.mx                                  //
+//  Referencias:    https://github.com/riscv/riscv-plic-spec            //
+//**********************************************************************//
+
 package lagarto_plic_pkg;
 
     import riscv_privileged_pkg :: MXLEN;
