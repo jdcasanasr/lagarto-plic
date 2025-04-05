@@ -1,0 +1,2 @@
+vlog lagarto_plic_gateway.sv
+vlog lagarto_plic_gateway_tb.sv
